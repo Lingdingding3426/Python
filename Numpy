@@ -1,1 +1,21 @@
+import numpy as np
+a = np.arrange(15),reshape(3,5)
+a.shape   #(3,5) the dimensions of the array
+a.ndim   #the number of dimensions in the array
+a.dtype.name    #type of elements in array
+a.itemsize   #the bytes of each elements in array 
+a.size     #number of basic elements
+type(a)   #type ndarray
 
+np.zeros((2,3))
+np.ones((2,3))
+np.empty((2,3))
+
+np.arrange(0,2,0.3)
+np.linspace(0,2,10)
+
+np.zeros_like(a)
+np.ones_like(a)
+np.empty_like(a)
+
+display all the elements of matrix 1
