@@ -12,7 +12,7 @@ np.ones((2,3))
 np.empty((2,3))
 np.random.random((2,3))
 
-np.arrange(0,2,0.3)
+np.arange(0,2,0.3)
 np.linspace(0,2,10)
 
 np.zeros_like(a)
@@ -30,7 +30,7 @@ a-b
 a*b
 b**2
 
-A = np.arrange(4).reshape(2,2)
+A = np.arange(4).reshape(2,2)
 B = np.array([[4,3],[2,1]])
 A * B    # multipy each element
 A @ B    # matrix multipy
@@ -49,7 +49,7 @@ np.exp(A)
 np.sqrt(A)
 np.add(A,B)
 
-a = np.arrange(10)**3
+a = np.arange(10)**3
 a[2:5]
 a[:6:2]=1000  #set every 2nd element to -1000
 
@@ -86,7 +86,7 @@ a.resize((2,6))  #change the array itself
 
 a.reshape((6,-1)) #it will calculate the other dimentions automatically
 
-a = np.arrange(4).reshape((2,2))
+a = np.arange(4).reshape((2,2))
 b = np.linspace(4,8,4).reshape((2,2))
 np.vstack((a,b))
 np.hstack((a,b))
