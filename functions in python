@@ -1,1 +1,3 @@
-
+pow(4,3) #means 4**3
+numpy.square(4) #means 4**2
+numpy.sqrt(4)  # result 2
