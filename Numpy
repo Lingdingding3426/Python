@@ -23,7 +23,7 @@ np.empty_like(a)
 np.set_printoptions(threshold = np.nan)
 
 #basic operations
-a = ([20,30,40,50])
+a = np.array([20,30,40,50])
 b = np.random(4)
 a+b
 a-b
