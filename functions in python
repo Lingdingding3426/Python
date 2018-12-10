@@ -1,3 +1,8 @@
 pow(4,3) #means 4**3
 numpy.square(4) #means 4**2
 numpy.sqrt(4)  # result 2
+
+#计算特征值和特征向量
+e,v = np.linalg.eig(x)
+#求numpy中的逆矩阵
+numpy.linalg.inv(x)
