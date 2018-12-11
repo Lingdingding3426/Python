@@ -1,0 +1,90 @@
+import numpy as np
+import matplotlib.pyplot as plt
+np.set_printoptions(suppress=True, threshold=np.nan)
+
+v = np.loadtxt('missile_process_noise.txt')
+w = np.loadtxt('missile_sensor_noise.txt')
+
+T = 0.1
+b = 0.0001
+g = 9.81
+x_x = np.zeros((401,4)) 
+P = np.zeros((401,4,4))
+P_k = np.zeros((401,4,4))
+F = np.array([[1,0,T,0],[0,1,0,T],[0,0,1-b,0],[0,0,0,1-b]])
+u = np.array([0,0,0,-g*T])
+H = np.array([[1,0,0,0],[0,1,0,0]])
+x_x[0,:] = [50,70,250,50]
+V = np.array([[0.1,0,0,0],[0,0.1,0,0],[0,0,0.1,0],[0,0,0,0.1]])
+W = np.array([[64*(10**6),0],[0,64*(10**6)]])
+
+X = np.zeros([401,4])
+Y = np.zeros([401,2])
+X[0,:] = [0,0,100,200]
+Y[0,:] = H@X[0,:]+w[0,...]
+
+P[0,...] = np.array([[10**5,0,0,0],[0,10**7,0,0],[0,0,10**5,0],[0,0,0,10**7]])
+
+k = 0
+for k in range(400):
+    X[k+1,...] = F@X[k,:]+u+v[k,...]
+    Y[k+1,...] = H@X[k+1,...]+w[k+1,...]
+
+    P_k[k,...] = F@P[k,...]@F.T+V
+    S = H@P_k[k,...]@H.T+W
+    R = P_k[k,...]@H.T@np.linalg.inv(S)
+    
+    P[k+1,...] = P_k[k,...]-R@H@P_k[k,...]
+    x_k = F@x_x[k,...]+u
+    v_plus = Y[k+1,...]-H@x_k
+    x_x[k+1,...] = x_k+R@v_plus
+
+print('sensor output')
+print(Y)
+print('system state vector')
+print(X)
+print('posterior state estimate')
+print(x_x)
+print('posterior covariance matrix')
+print(P)
+plt.figure(1)
+x = np.arange(0,401,1)
+plt.plot(x,X[:,0],'g',x,Y[:,0],'r',x,x_x[:,0],'k')
+plt.title('figure 1: horizontal position')
+plt.legend(('true ','estimated','radar reading '),loc='upper')
+plt.show()
+plt.figure(2)
+plt.plot(x,X[:,1],'g',x,Y[:,1],'r',x,x_x[:,1],'k')
+plt.title('figure 2: vertical position')
+plt.legend(('true','estimated','radar reading '),loc='upper')
+plt.show()
+plt.figure(3)
+plt.plot(x,x_x[:,0]-X[:,0],'g',x,x_x[:,1]-X[:,1],'r')
+plt.title('figure 3:error position')
+plt.legend(('horizontal','vertical '),loc='upper')
+plt.show()
+plt.figure(4)
+plt.plot(X[:,0],X[:,1],'g',x_x[:,0],x_x[:,1],'r')
+plt.title('figure 4: Cartesian coordinate')
+plt.legend(('true','estimated'),loc='upper')
+plt.show()
+plt.figure(5)
+plt.plot(x,X[:,2],'g',x,X[:,3],'r',x,x_x[:,2],'y',x,x_x[:,3],'b')
+plt.title('figure 5:velocity')
+plt.legend(('true horizontal','true vertical','estimated horizontal','estimated vertical'),loc='upper')
+plt.show()
+plt.figure(6)
+plt.plot(x,x_x[:,2]-X[:,2],'g',x,x_x[:,3]-X[:,3],'r')
+plt.title('figure 6:error velocity')
+plt.legend(('horizontal','vertical'),loc='upper')
+plt.show()
+plt.figure(7)
+plt.plot(x,P[:,0,0],'b',x,P[:,1,1],'r')
+plt.title('figure 7:posteriror covariance corresponding to position')
+plt.legend(('Sx','Sy'),loc='upper')
+plt.show()
+plt.figure(8)
+plt.plot(x,P[:,2,2],'b',x,P[:,3,3],'r')
+plt.title('figure 8:posteriror covariance corresponding to velocity')
+plt.legend(('speed on Sx','speed on Sy'),loc='upper')
+plt.show()
