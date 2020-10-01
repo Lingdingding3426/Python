@@ -1,8 +1,41 @@
 pow(4,3) #means 4**3
-numpy.square(4) #means 4**2
+numpy.square(4) #means 4*4
 numpy.sqrt(4)  # result 2
 
 #计算特征值和特征向量
 e,v = np.linalg.eig(x)
 #求numpy中的逆矩阵
 numpy.linalg.inv(x)
+
+numpy.sinh(x[, out]) = ufunc ‘sin’) : This mathematical function helps user to calculate hyperbolic sine for all x(being the array elements).
+numpy.cosh(x[, out]) = ufunc ‘cos’) : This mathematical function helps user to calculate hyperbolic cosine for all x(being the array elements).
+numpy.around(arr, decimals = 0, out = None) : This mathematical function helps user to evenly round array elements to the given number of decimals.
+numpy.round_(arr, decimals = 0, out = None) : This mathematical function round an array to the given number of decimals.
+numpy.exp(array, out = None, where = True, casting = ‘same_kind’, order = ‘K’, dtype = None) : This mathematical function helps user to calculate exponential of all the elements in the input array.
+numpy.log(x[, out] = ufunc ‘log1p’) : This mathematical function helps user to calculate Natural logarithm of x where x belongs to all the input array elements.
+Natural logarithm log is the inverse of the exp(), so that log(exp(x)) = x. The natural logarithm is log in base e.
+numpy.reciprocal(x, /, out=None, *, where=True) : This mathematical function is used to calculate reciprocal of all the elements in the input array.
+numpy.divide(arr1, arr2, out = None, where = True, casting = ‘same_kind’, order = ‘K’, dtype = None) : Array element from first array is divided by elements from second element (all happens element-wise). Both arr1 and arr2 must have same shape and element in arr2 must not be zero; otherwise it will raise an error.
+numpy.isreal(array) : Test element-wise whether it is a real number or not(not infinity or not Not a Number) and return the result as a boolean array.
+numpy.conj(x[, out] = ufunc ‘conjugate’) : This function helps the user to conjugate any complex number.
+The conjugate of a complex number is obtained by changing the sign of its imaginary part. If the complex number is 2+5j then its conjugate is 2-5j.
+numpy.cbrt(arr, out = None, ufunc ‘cbrt’) : This mathematical function helps user to calculate cube root of x for all x being the array elements.
+numpy.clip() : This function is used to Clip (limit) the values in an array.
+Given an interval, values outside the interval are clipped to the interval edges. For example, if an interval of [0, 1] is specified, values smaller than 0 become 0, and values larger than 1 become 1.
+
+
+
+
+
+
+tan()	Compute tangent element-wise.
+arcsin()	Inverse sine, element-wise.
+arccos()	Trigonometric inverse cosine, element-wise.
+arctan()	Trigonometric inverse tangent, element-wise.
+arctan2()	Element-wise arc tangent of x1/x2 choosing the quadrant correctly.
+degrees()	Convert angles from radians to degrees.
+rad2deg()	Convert angles from radians to degrees.
+deg2rad	Convert angles from degrees to radians.
+radians()	Convert angles from degrees to radians.
+hypot()	Given the “legs” of a right triangle, return its hypotenuse.
+unwrap()	Unwrap by changing deltas between values to 2*pi complement.
